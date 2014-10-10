@@ -12,10 +12,40 @@
 	
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 
+		<style>
+	        body {
+            padding: 0;
+            margin: 0;
+        }
+        html, body,
+		#map {
+			width: 100%;
+			height: 100%;
+		}
+		#TitleText  {
+			position: absolute;
+			top: 0px;
+			left: 5%;
+			width: 25%;
+			z-index: 98;
+			background-color: rgba(255,255,255,0.75)
+		}
+		#floatingButtons  {
+			position: absolute;
+			bottom: 4%;
+			right: 5%;
+			width: 95%;
+			z-index: 99;
+			text-align:right
+			}
+
+
+    </style>
+	
 </head>
 <body>
 
-	<div id="map" style="width: 800px; height: 600px"></div>
+	<div id="map">
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 	<script src="/dist/leaflet.awesome-markers.js"></script>
 		
@@ -40,6 +70,6 @@
   	L.marker([39.9500 , - 75.1667], {icon: redMarker}).addTo(map);
 
 	</script>
-	
+	</div>
 </body>
 </html>
