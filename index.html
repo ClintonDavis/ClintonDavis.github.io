@@ -1,7 +1,107 @@
+
 <!DOCTYPE html>
 <html>
+<head>
+	<title>Clinton's Practicing Leaflet Icons</title>
+	<meta charset="utf-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/dist/leaflet.awesome-markers.css">
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	
+	<style>
+	        body {
+            padding: 0;
+            margin: 0;
+        }
+        html, body,
+		#map {
+			width: 100%;
+			height: 100%;
+		}
+		#TitleText  {
+			position: absolute;
+			top: 0px;
+			left: 5%;
+			width: 25%;
+			z-index: 99;
+			background-color: rgba(255,255,255,0.75)
+		}
+		#floatingButtons  {
+			position: absolute;
+			bottom: 4%;
+			right: 5%;
+			width: 95%;
+			z-index: 99;
+			text-align:right
+
+    </style>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+	<div id="map">
+		<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+		<script src="/dist/leaflet.awesome-markers.js"></script>
+	
+		<script>
+	
+		// create a map in the "map" div, set the view to a given place and zoom
+		var map = L.map('map').setView([39.9500 , - 75.1667], 13);
+
+		L.tileLayer('http://{s}.tiles.mapbox.com/v3/cdavis.jhddlci9/{z}/{x}/{y}.png', {
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+			maxZoom: 18
+			}).addTo(map);	
+
+// Creates a red marker with the coffee icon
+//	var redMarker = L.AwesomeMarkers.icon({
+//		  icon: 'star',
+//		  prefix: 'fa',
+//		  markerColor: 'red'
+//		  });
+
+		L.marker([39.9500 , - 75.1667], {icon: redMarker}).addTo(map);
+
+
+		var TempleUIcon = L.icon({
+			iconUrl: 'temple_logo_transparent.png',
+			shadowUrl: 'temple_logo_shadow_transparent.png',
+
+			iconSize:     [44.66666667, 51.33333333], // size of the icon
+			shadowSize:   [61, 14], // size of the shadow
+			iconAnchor:   [22.33333333, 51.33333333], // point of the icon which will correspond to marker's location (top left corner)
+			shadowAnchor: [22, 14],  // the same for the shadow
+			popupAnchor:  [22, -30] // point from which the popup should open relative to the iconAnchor
+		});
+
+		L.marker([39.981067, -75.157868], {icon: TempleUIcon}).addTo(map);
+
+		</script>
+	</div>
+		
+	<div id="TitleText">
+		<h1> Clinton Davis </h1>
+		<h4> PhD Student; TA </h4> 
+		<h4> Geography & Urban Studies </h4> 
+		<h4> Temple University </h4> 
+	</div>
+	
+	<div id="floatingButtons">
+		<a href="http://www.google.com" class="btn btn-success btn-lg" role="google">cv.pdf</a>
+		<a href="mailto:clinton.davis@temple.edu" class="btn btn-primary btn-lg" role="google">email</a>
+	</div>
+
 </body>
 </html>
