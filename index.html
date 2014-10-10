@@ -66,12 +66,11 @@
 			maxZoom: 18
 			}).addTo(map);	
 
-// Creates a red marker with the coffee icon
-//	var redMarker = L.AwesomeMarkers.icon({
-//		  icon: 'star',
-//		  prefix: 'fa',
-//		  markerColor: 'red'
-//		  });
+		var redMarker = L.AwesomeMarkers.icon({
+			icon: 'star',
+			prefix: 'fa',
+			markerColor: 'red'
+			});
 
 		L.marker([39.9500 , - 75.1667], {icon: redMarker}).addTo(map);
 
