@@ -144,7 +144,12 @@
 			popupAnchor:  [22, -30], // point from which the popup should open relative to the iconAnchor
 			
 		});
+		
+		var TempleU = new L.LatLng(39.981067, -75.157868); 
+		var WVU = new L.LatLng(39.635787, -79.956164);
 
+		Geodesic.setLatLngs([[TempleU, WVU]]);
+		
 		L.marker([40.295976, -83.067846], {icon: OWUIcon}).addTo(map);
 		
 		L.marker([39.981067, -75.157868], {icon: TempleUIcon}).addTo(map);
