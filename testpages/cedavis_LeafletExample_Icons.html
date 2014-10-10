@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Clinton's Practicing Leaflet Icons</title>
+	<meta charset="utf-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/dist/leaflet.awesome-markers.css">
+	
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+</head>
+<body>
+
+	<div id="map" style="width: 800px; height: 600px"></div>
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	<script src="/dist/leaflet.awesome-markers.js"></script>
+		
+	<script>
+	
+	
+	// create a map in the "map" div, set the view to a given place and zoom
+	var map = L.map('map').setView([39.9500 , - 75.1667], 13);
+
+	L.tileLayer('http://{s}.tiles.mapbox.com/v3/cdavis.jhddlci9/{z}/{x}/{y}.png', {
+		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+		maxZoom: 18
+		}).addTo(map);	
+
+	// Creates a red marker with the coffee icon
+	var redMarker = L.AwesomeMarkers.icon({
+		  icon: 'star',
+		  prefix: 'fa',
+		  markerColor: 'red'
+		  });
+
+  	L.marker([39.9500 , - 75.1667], {icon: redMarker}).addTo(map);
+
+	</script>
+	
+</body>
+</html>
