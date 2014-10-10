@@ -83,8 +83,22 @@
 			popupAnchor:  [22, -30], // point from which the popup should open relative to the iconAnchor
 			
 		});
+		
+		var TempleUIcon = L.icon({
+			iconUrl: 'wvu_logo.png',
+//			shadowUrl: 'temple_logo_shadow_transparent.png',
+
+			iconSize:     [44.66666667, 51.33333333], // size of the icon
+//			shadowSize:   [61, 14], // size of the shadow
+			iconAnchor:   [22.33333333, 51.33333333], // point of the icon which will correspond to marker's location (top left corner)
+//			shadowAnchor: [22, 14],  // the same for the shadow
+			popupAnchor:  [22, -30], // point from which the popup should open relative to the iconAnchor
+			
+		});
 
 		L.marker([39.981067, -75.157868], {icon: TempleUIcon}).addTo(map);
+		
+		L.marker([39.635787, -79.956164], {icon: WVUIcon}).addTo(map);
 		
 		L.marker([39.298307, -82.953901], {icon: redMarker}).addTo(map);
 
