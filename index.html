@@ -148,15 +148,20 @@
 		var TempleU = new L.LatLng(39.981067, -75.157868); 
 		var WVU = new L.LatLng(39.635787, -79.956164);
 
-		Geodesic.setLatLngs([[TempleU, WVU]]);
+		var Geodesic.setLatLngs([[TempleU, WVU]]), {
+			weight:7, 
+			opacity:0.3,
+			color: 'red',
+			steps: 20
+		}).addTo(map);
 		
 		L.marker([40.295976, -83.067846], {icon: OWUIcon}).addTo(map);
 		
-		L.marker([39.981067, -75.157868], {icon: TempleUIcon}).addTo(map);
+		L.marker(TempleU, {icon: TempleUIcon}).addTo(map);
 
 		L.marker([40.634856, -82.333989], {icon: NuhopIcon}).addTo(map);
 		
-		L.marker([39.635787, -79.956164], {icon: WVUIcon}).addTo(map);
+		L.marker(WVU, {icon: WVUIcon}).addTo(map);
 
 		L.marker([40.752119, -73.993909], {icon: CHIcon}).addTo(map);
 		
