@@ -21,8 +21,6 @@
 	
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 	
-	<script src="./Leaflet.Geodesic.js"></script>
-	
 	<style>
 	        body {
             padding: 0;
@@ -147,13 +145,6 @@
 		
 		var TempleU = new L.LatLng(39.981067, -75.157868); 
 		var WVU = new L.LatLng(39.635787, -79.956164);
-
-		var GeodesicTUWVU = L.geodesic([[TempleU, WVU]]), {
-			weight:7, 
-			opacity:0.3,
-			color: 'red',
-			steps: 20
-		}).addTo(map);
 		
 		L.marker([40.295976, -83.067846], {icon: OWUIcon}).addTo(map);
 		
