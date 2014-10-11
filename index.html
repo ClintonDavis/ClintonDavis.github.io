@@ -147,14 +147,14 @@
 			
 		});			
 		
-		var OhioIcon = L.icon({
-			iconUrl: 'Ohio_seal.png',
-//			shadowUrl: 'Nuhop_logo.png',
+		var HouseIcon = L.icon({
+			iconUrl: 'House_logo_transparent.png',
+			shadowUrl: 'House_logo_shadow_transparent.png',
 
 			iconSize:     [50, 50], // size of the icon
-//			shadowSize:   [100, 12.5], // size of the shadow
+			shadowSize:   [100, 12.5], // size of the shadow
 			iconAnchor:   [25, 50], // point of the icon which will correspond to marker's location (top left corner)
-//			shadowAnchor: [25, 12.5],  // the same for the shadow
+			shadowAnchor: [25, 12.5],  // the same for the shadow
 			popupAnchor:  [0, 0], // point from which the popup should open relative to the iconAnchor
 			
 		});
@@ -165,7 +165,7 @@
 		var OWU = new L.LatLng(40.295976, -83.067846); 
 		var Nuhop = new L.LatLng(40.634856, -82.333989);
 		var CH = new L.LatLng(40.752119, -73.993909);		
-		var Ohio = new L.LatLng(39.298307, -82.953901);	
+		var House = new L.LatLng(39.298307, -82.953901);	
 		
 		L.marker(Nuhop, {icon: NuhopIcon}).addTo(map);
 		
@@ -175,7 +175,7 @@
 		
 		L.marker(WVU, {icon: WVUIcon}).addTo(map);
 
-		L.marker(Ohio, {icon: OhioIcon}).addTo(map);
+		L.marker(House, {icon: HouseIcon}).addTo(map);
 		
 		L.marker(OWU, {icon: OWUIcon}).addTo(map);
 
