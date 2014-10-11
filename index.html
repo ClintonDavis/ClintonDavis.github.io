@@ -21,8 +21,6 @@
 	
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 	
-	<script src="spiderfy/oms.min.js"></script>
-	
 	<style>
 	        body {
             padding: 0;
@@ -76,15 +74,6 @@
 			}).addTo(map);	
 			
 		map.addLayer(layer);
-		
-		var oms = new OverlappingMarkerSpiderfier(map);
-		
-		var popup = new L.Popup();
-			oms.addListener('click', function(marker) {
-			popup.setContent(marker.desc);
-			popup.setLatLng(marker.getLatLng());
-			map.openPopup(popup);
-		});
 
 		var redMarker = L.AwesomeMarkers.icon({
 			icon: 'star',
