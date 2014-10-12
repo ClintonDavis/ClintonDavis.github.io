@@ -101,7 +101,8 @@
     function success_callback(p){
         // p.latitude : latitude value
         // p.longitude : longitude value
-        var UserLocation = new L.LatLng(p.Latitude, p.Longitude)
+        var UserLocation = new L.LatLng(p.Latitude, p.Longitude);
+        alert(UserLocation);
     }
 
     function error_callback(p){
