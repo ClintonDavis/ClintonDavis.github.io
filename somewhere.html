@@ -94,13 +94,11 @@
 		
 		<script language="Javascript">
 		<!--
-      			var randomLat = Math.random() * (-90 - 90) + -90;;
-      			var randomLong = Math.random() * (-180 - 180) + -180;;
+      			var randomLat = Math.random() * 180 - 90;;
+      			var randomLong = Math.random() * 360 - 180;;
       		-->
     		</script>
 
-    var RandomLocation = new L.LatLng(randomLat, randomLong);
-		
 		var TempleU = new L.LatLng(39.981067, -75.157868); 
 		var WVU = new L.LatLng(39.635787, -79.956164);
 		var Tt = new L.LatLng(40.825615, -74.471691);
@@ -108,6 +106,9 @@
 		var Nuhop = new L.LatLng(40.634856, -82.333989);
 		var CH = new L.LatLng(40.752119, -73.993909);		
 		var House = new L.LatLng(39.298307, -82.953901);
+		
+		var RandomLocation = new L.LatLng(randomLat, randomLong);
+
 	
 		// create a map in the "map" div, set the view to a given place and zoom
 		var map = L.map('map').setView(RandomLocation, 10);
