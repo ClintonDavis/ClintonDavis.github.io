@@ -101,10 +101,11 @@
     function success_callback(p){
         // p.latitude : latitude value
         // p.longitude : longitude value
-        var UserLatitude = parseFloat( p.coords.latitude ).toFixed(8);
-	var UserLongitude = parseFloat( p.coords.longitude ).toFixed(8);
+	var UserLatitude = parseFloat( p.coords.latitude );
+	var UserLongitude = parseFloat( p.coords.longitude );
         var UserLocation = new L.LatLng(UserLatitude, UserLongitude);
-        alert("You are at: ", UserLatitude, UserLongitude);
+        alert(UserLatitude, UserLongitude);
+        alert(UserLocation);
     }
 
     function error_callback(p){
