@@ -22,26 +22,42 @@
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 	
 	<style>
-	        body {
+		.wrapper { 
+			border : 2px solid #000; 
+			overflow:hidden;
+		}
+
+		.wrapper div {
+			min-height: 200px;
+			padding: 10px;
+		}
+		
+	    body {
 			background: #E0E0E0; 
             padding: 0;
             margin: 0;
         }
+		
         html, body,
 		#background {
 			width: 100%;
 			height: 100%;
 		}
+		
 		#TitleText  {
 			position: absolute;
 			top: 10px;
 			left: 50px;
 			bottom: 50%;
-			right: 20%
-
+			
+			padding-top:10px;
+			padding-left:10px;
+			padding-right:10px;
+			
 			z-index: 98;
 			background-color: rgba(255,255,255,0.9)
 		}
+		
 		#MainFrame {
 			position: absolute;
 			top: 10px;
@@ -51,6 +67,7 @@
 			z-index: 98;
 			background-color: rgba(255,255,255,0.9)
 		}
+		
 		#floatingButtons  {
 			position: absolute;
 			bottom: 50px;
@@ -60,7 +77,33 @@
 			height: 100%
 			z-index: 99;
 			text-align:right
-			}
+		}
+			
+		#one {
+			background-color: gray;
+			float:left; 
+			margin-right:20px;
+			width:140px;
+			border-right:2px solid #000;
+		}
+		
+		#two { 
+			background-color: white;
+			overflow:hidden;
+			margin:10px;
+			border:2px dashed #ccc;
+			min-height:170px;
+		}
+
+		@media screen and (max-width: 400px) {
+		   #TitleText { 
+			float: none;
+			margin-right:0;
+			width:auto;
+			border:0;
+			border-bottom:2px solid #000;    
+		  }
+		}
 
     </style>
 </head>
