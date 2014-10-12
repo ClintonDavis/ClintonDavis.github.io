@@ -104,7 +104,7 @@
         var UserLatitude = parseFloat( p.coords.latitude ).toFixed(8);
 	var UserLongitude = parseFloat( p.coords.longitude ).toFixed(8);
         var UserLocation = new L.LatLng(UserLatitude, UserLongitude);
-        alert("You are at: " p.coords);
+        alert("You are at: ", p.coords);
     }
 
     function error_callback(p){
