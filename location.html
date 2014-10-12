@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Clinton Davis</title>
+	<meta charset="utf-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/dist/leaflet.awesome-markers.css">
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	
+	<style>
+	        body {
+            padding: 0;
+            margin: 0;
+        }
+        html, body,
+		#map {
+			width: 100%;
+			height: 100%;
+		}
+
+		#floatingButtons  {
+			position: absolute;
+			bottom: 25px;
+			right: 25px;
+			padding-left:0px;
+			padding-right:0px;
+			height: 100%
+			z-index: 100;
+			text-align:right
+		}
+	@media screen and (min-width: 401px) {
+		#TitleTextMobile { 
+			display:none;
+		}
+		#TitleText  {
+			position: absolute;
+			top: 10px;
+			left: 50px;
+			width: 200px;
+			
+			padding-top:10px;
+			padding-left:10px;
+			padding-right:10px;
+			
+			z-index: 98;
+			background-color: rgba(255,255,255,0.9)
+		}
+		
+		}
+		
+	@media screen and (max-width: 400px) {
+		#TitleText { 
+			display:none;
+		}
+		#TitleTextMobile  {
+			position: absolute;
+			top: 10px;
+			left: 50px;
+			width: 200px;
+			
+			padding-top:10px;
+			padding-left:10px;
+			padding-right:10px;
+			
+			z-index: 98;
+			background-color: rgba(255,255,255,0.9)
+		}  
+		  
+		  
+		}
+
+    </style>
+</head>
+<body>
+  <script src="geoPosition.js"></script>
+  
+  if (geoPosition.init()) {
+    geoPosition.getCurrentPosition(geoSuccess, geoError);
+  }
+  
+  var UserLocation = new L.LatLng(geoSuccess)
+  
+	<div id="map">
+		<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+		<script src="/dist/leaflet.awesome-markers.js"></script>
+	
+		<script>
+
+		var TempleU = new L.LatLng(39.981067, -75.157868); 
+		var WVU = new L.LatLng(39.635787, -79.956164);
+		var Tt = new L.LatLng(40.825615, -74.471691);
+		var OWU = new L.LatLng(40.295976, -83.067846); 
+		var Nuhop = new L.LatLng(40.634856, -82.333989);
+		var CH = new L.LatLng(40.752119, -73.993909);		
+		var House = new L.LatLng(39.298307, -82.953901);
+		
+		var RandomLocation = new L.LatLng(randomLat, randomLong);
+	
+		// create a map in the "map" div, set the view to a given place and zoom
+		var map = L.map('map').setView(UserLocation, 10);
+
+ 		L.tileLayer('http://{s}.tiles.mapbox.com/v3/cdavis.jhddlci9/{z}/{x}/{y}.png', {
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+			maxZoom: 18
+			}).addTo(map);	
+
+		var redMarker = L.AwesomeMarkers.icon({
+			icon: 'star',
+			prefix: 'fa',
+			markerColor: 'red'
+			});
+
+		var TempleUIcon = L.icon({
+			iconUrl: 'temple_logo_transparent.png',
+			shadowUrl: 'temple_logo_shadow_transparent.png',
+
+			iconSize:     [50, 50], // size of the icon
+			shadowSize:   [100, 12.5], // size of the shadow
+			iconAnchor:   [25, 50], // point of the icon which will correspond to marker's location (top left corner)
+			shadowAnchor: [25, 12.5],  // the same for the shadow
+			popupAnchor:  [0, 0], // point from which the popup should open relative to the iconAnchor
+			
+		});
+		
+		var WVUIcon = L.icon({
+			iconUrl: 'WVU_logo_transparent.png',
+			shadowUrl: 'WVU_logo_shadow_transparent.png',
+
+			iconSize:     [50, 50], // size of the icon
+			shadowSize:   [100, 12.5], // size of the shadow
+			iconAnchor:   [25, 50], // point of the icon which will correspond to marker's location (top left corner)
+			shadowAnchor: [25, 12.5],  // the same for the shadow
+			popupAnchor:  [0, 0], // point from which the popup should open relative to the iconAnchor
+			
+		});
+		
+		var CHIcon = L.icon({
+			iconUrl: 'CH_logo_transparent.png',
+			shadowUrl: 'CH_logo_shadow_transparent.png',
+
+			iconSize:     [50, 50], // size of the icon
+			shadowSize:   [100, 12.5], // size of the shadow
+			iconAnchor:   [25, 50], // point of the icon which will correspond to marker's location (top left corner)
+			shadowAnchor: [25, 12.5],  // the same for the shadow
+			popupAnchor:  [0, 0], // point from which the popup should open relative to the iconAnchor
+			
+		});
+		
+		var NuhopIcon = L.icon({
+			iconUrl: 'Nuhop_logo_transparent.png',
+			shadowUrl: 'Nuhop_logo_shadow_transparent.png',
+
+			iconSize:     [50, 50], // size of the icon
+			shadowSize:   [100, 12.5], // size of the shadow
+			iconAnchor:   [25, 50], // point of the icon which will correspond to marker's location (top left corner)
+			shadowAnchor: [25, 12.5],  // the same for the shadow
+			popupAnchor:  [0, 0], // point from which the popup should open relative to the iconAnchor
+			
+		});
+		var OWUIcon = L.icon({
+			iconUrl: 'OWU_logo_transparent.png',
+			shadowUrl: 'OWU_logo_shadow_transparent.png',
+
+			iconSize:     [50, 50], // size of the icon
+			shadowSize:   [100, 12.5], // size of the shadow
+			iconAnchor:   [25, 50], // point of the icon which will correspond to marker's location (top left corner)
+			shadowAnchor: [25, 12.5],  // the same for the shadow
+			popupAnchor:  [0, 0], // point from which the popup should open relative to the iconAnchor
+			
+		});
+		
+		var TtIcon = L.icon({
+			iconUrl: 'Tt_logo_transparent.png',
+			shadowUrl: 'Tt_logo_shadow_transparent.png',
+
+			iconSize:     [50, 50], // size of the icon
+			shadowSize:   [100, 12.5], // size of the shadow
+			iconAnchor:   [25, 50], // point of the icon which will correspond to marker's location (top left corner)
+			shadowAnchor: [25, 12.5],  // the same for the shadow
+			popupAnchor:  [0, 0], // point from which the popup should open relative to the iconAnchor
+			
+		});			
+		
+		var HouseIcon = L.icon({
+			iconUrl: 'House_logo_transparent.png',
+			shadowUrl: 'House_logo_shadow_transparent.png',
+
+			iconSize:     [50, 50], // size of the icon
+			shadowSize:   [100, 12.5], // size of the shadow
+			iconAnchor:   [25, 50], // point of the icon which will correspond to marker's location (top left corner)
+			shadowAnchor: [25, 12.5],  // the same for the shadow
+			popupAnchor:  [0, 0], // point from which the popup should open relative to the iconAnchor
+			
+		});
+		
+		L.marker(Nuhop, {icon: NuhopIcon}).addTo(map);
+		
+		L.marker(TempleU, {icon: TempleUIcon}).addTo(map);
+
+		L.marker(CH, {icon: CHIcon}).addTo(map);
+		
+		L.marker(WVU, {icon: WVUIcon}).addTo(map);
+
+		L.marker(House, {icon: HouseIcon}).addTo(map);
+		
+		L.marker(OWU, {icon: OWUIcon}).addTo(map);
+
+		L.marker(Tt, {icon: TtIcon}).addTo(map);
+		
+		L.marker(RandomLocation, {icon: redMarker}).addTo(map);
+		
+		</script>
+	</div>
+		
+	<div id="TitleText">
+		<img src = "./ClintonPicture_sideBar.png" width = 180px> </img>
+		<h1> Clinton Davis </h1>
+		<h4> PhD Student; TA </h4> 
+		<h4> Geography & Urban Studies </h4> 
+		<h4> Temple University </h4> 
+	</div>
+	
+		<div id="TitleTextMobile">
+		<h1> Clinton Davis </h1>
+		<h4> PhD Student; TA </h4> 
+		<h4> Geography & Urban Studies </h4> 
+		<h4> Temple University </h4> 
+	</div>
+	
+	<div id="floatingButtons">
+		<a href="./click2.html" class="btn btn-default btn-lg">Click</a>
+		<a href="./cd.html" class="btn btn-warning btn-lg">about</a>
+		<a href="./cedavis_cv_Sep2014.pdf" class="btn btn-success btn-lg">cv.pdf</a>
+		<a href="mailto:clinton.davis@temple.edu" class="btn btn-primary btn-lg">email</a>
+		<a href="https://twitter.com/_C_Davis" class="btn btn-info btn-lg">twitter</a>
+	</div>
+
+</body>
+</html>
