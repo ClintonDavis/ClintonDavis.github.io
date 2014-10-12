@@ -130,7 +130,7 @@
 		var CH = new L.LatLng(40.752119, -73.993909);		
 		var House = new L.LatLng(39.298307, -82.953901);
 		// create a map in the "map" div, set the view to a given place and zoom
-		var map = L.map('map').setView(TempleU, 10);
+		var map = L.map('map').setView(UserLocation, 10);
 
  		L.tileLayer('http://{s}.tiles.mapbox.com/v3/cdavis.jhddlci9/{z}/{x}/{y}.png', {
 			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -239,6 +239,8 @@
 		L.marker(OWU, {icon: OWUIcon}).addTo(map);
 
 		L.marker(Tt, {icon: TtIcon}).addTo(map);
+		
+		L.marker(UserLocation, {icon: redMarker}).addTo(map);
 		
 		</script>
 	</div>
