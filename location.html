@@ -104,7 +104,7 @@
         var UserLatitude = parseFloat( p.coords.latitude ).toFixed(8);
 	var UserLongitude = parseFloat( p.coords.longitude ).toFixed(8);
         var UserLocation = new L.LatLng(UserLatitude, UserLongitude);
-        alert(UserLocation);
+        alert("You are at: " p.coords);
     }
 
     function error_callback(p){
@@ -118,6 +118,7 @@
 		<script src="/dist/leaflet.awesome-markers.js"></script>
 	
 		<script>
+		alert(UserLocation);
 
 		var TempleU = new L.LatLng(39.981067, -75.157868); 
 		var WVU = new L.LatLng(39.635787, -79.956164);
@@ -126,9 +127,7 @@
 		var Nuhop = new L.LatLng(40.634856, -82.333989);
 		var CH = new L.LatLng(40.752119, -73.993909);		
 		var House = new L.LatLng(39.298307, -82.953901);
-		
-		var RandomLocation = new L.LatLng(randomLat, randomLong);
-	
+		alert(TempleU)
 		// create a map in the "map" div, set the view to a given place and zoom
 		var map = L.map('map').setView(UserLocation, 10);
 
