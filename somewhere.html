@@ -89,13 +89,14 @@
 		<script>
       			var randomLat = Math.random() * 180 - 90;
       			var randomLong = Math.random() * 360 - 180;
-      			alert(randomLat)
     		</script>
 	<div id="map">
 		<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 		<script src="/dist/leaflet.awesome-markers.js"></script>
 	
 		<script>
+		alert(randomLat);
+		alert(randomLong);
 
 		var TempleU = new L.LatLng(39.981067, -75.157868); 
 		var WVU = new L.LatLng(39.635787, -79.956164);
@@ -105,8 +106,8 @@
 		var CH = new L.LatLng(40.752119, -73.993909);		
 		var House = new L.LatLng(39.298307, -82.953901);
 		
-		var RandomLocation = new L.LatLng([randomLat, randomLong]);
-
+		var RandomLocation = new L.LatLng(randomLat, randomLong);
+		alert(RandomLocation);
 	
 		// create a map in the "map" div, set the view to a given place and zoom
 		var map = L.map('map').setView(RandomLocation, 10);
