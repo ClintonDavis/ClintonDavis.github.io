@@ -101,14 +101,13 @@
     function success_callback(p){
         // p.latitude : latitude value
         // p.longitude : longitude value
+        var UserLocation = new L.LatLng(p.Latitude, p.Longitude)
     }
 
     function error_callback(p){
         // p.message : error message
     }
 </script>
-  
-  var UserLocation = new L.LatLng(p.coords.latitude, p.coords.longitude)
   
 	<div id="map">
 		<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
