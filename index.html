@@ -205,9 +205,11 @@
 		var CHMarker = L.marker(CH, {icon: CHIcon}).addTo(map);		
 		var HouseMarker = L.marker(House, {icon: HouseIcon}).addTo(map);
 
-		TempleUMarker.bindPopup("<b>Temple University</b>").openPopup();
-		//<br>PhD Student 2013-Present<br>Teaching Assistant 2014-Present:<br>- Fall 2014: Gus 0821- Digital Mapping (Dr. D. Organ)<br>University Fellow 2013-Present"
-		
+		TempleUMarker.bindPopup("<b>Temple University</b><br>",
+		"PhD Student 2013-Present<br>Teaching Assistant 2014-Present:<br>",
+		"- Fall 2014: Gus 0821- Digital Mapping (Dr. D. Organ)<br>",
+		"University Fellow 2013-Present",
+		).openPopup();
 		</script>
 	</div>
 		
