@@ -197,19 +197,21 @@
 		var CH = new L.LatLng(40.752119, -73.993909);		
 		var House = new L.LatLng(39.298307, -82.953901);	
 		
-		L.marker(Nuhop, {icon: NuhopIcon}).addTo(map);
-		
-		L.marker(TempleU, {icon: TempleUIcon}).addTo(map);
+		var TempleUMarker = (TempleU, {icon: TempleUIcon}).addTo(map);
+		var WVUMarker =(WVU, {icon: WVUIcon}).addTo(map);
+		var TtMarker = Tt, {icon: TtIcon}).addTo(map);
+		var OWUMarker = (OWU, {icon: OWUIcon}).addTo(map);
+		var NuhopMarker = L.marker(Nuhop, {icon: NuhopIcon}).addTo(map);
+		var CHMarker = (CH, {icon: CHIcon}).addTo(map);		
+		var HouseMarker = (House, {icon: HouseIcon}).addTo(map);
 
-		L.marker(CH, {icon: CHIcon}).addTo(map);
+		TempleUMarker.bindPopup({
+		"<b>Temple University</b>",
+		"<p>PhD Student 2013-Present<p>"
 		
-		L.marker(WVU, {icon: WVUIcon}).addTo(map);
-
-		L.marker(House, {icon: HouseIcon}).addTo(map);
 		
-		L.marker(OWU, {icon: OWUIcon}).addTo(map);
-
-		L.marker(Tt, {icon: TtIcon}).addTo(map);
+		}).openPopup();
+		
 		
 		</script>
 	</div>
