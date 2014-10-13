@@ -197,15 +197,15 @@
 		var CH = new L.LatLng(40.752119, -73.993909);		
 		var House = new L.LatLng(39.298307, -82.953901);	
 		
-		var TempleUMarker = (TempleU, {icon: TempleUIcon}).addTo(map);
-		var WVUMarker =(WVU, {icon: WVUIcon}).addTo(map);
-		var TtMarker = Tt, {icon: TtIcon}).addTo(map);
-		var OWUMarker = (OWU, {icon: OWUIcon}).addTo(map);
+		var TempleUMarker = L.marker(TempleU, {icon: TempleUIcon}).addTo(map);
+		var WVUMarker = L.marker(WVU, {icon: WVUIcon}).addTo(map);
+		var TtMarker = L.marker(Tt, {icon: TtIcon}).addTo(map);
+		var OWUMarker = L.marker(OWU, {icon: OWUIcon}).addTo(map);
 		var NuhopMarker = L.marker(Nuhop, {icon: NuhopIcon}).addTo(map);
-		var CHMarker = (CH, {icon: CHIcon}).addTo(map);		
-		var HouseMarker = (House, {icon: HouseIcon}).addTo(map);
+		var CHMarker = L.marker(CH, {icon: CHIcon}).addTo(map);		
+		var HouseMarker = L.marker(House, {icon: HouseIcon}).addTo(map);
 
-//		TempleUMarker.bindPopup("<b>Temple University</b>").openPopup();
+		TempleUMarker.bindPopup("<b>Temple University</b>").openPopup();
 		//<br>PhD Student 2013-Present<br>Teaching Assistant 2014-Present:<br>- Fall 2014: Gus 0821- Digital Mapping (Dr. D. Organ)<br>University Fellow 2013-Present"
 		
 		</script>
