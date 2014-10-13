@@ -1,0 +1,4 @@
+Progress this week:
+Leaflet
+Html5
+CSS
