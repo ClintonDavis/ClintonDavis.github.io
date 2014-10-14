@@ -1,4 +1,10 @@
 Progress this week:
-Leaflet
-Html5
-CSS
+-Practiced/learned:
+--Leaflet
+--Html5
+--CSS
+--Github
+-Signed of for accounts at
+
+Thoughts:
+-GeoJSON for data for final project
