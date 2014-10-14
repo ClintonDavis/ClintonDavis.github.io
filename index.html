@@ -99,9 +99,6 @@
 			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
 			maxZoom: 18
 			}).addTo(map);	
-			
-		var EduWrk = new L.LayerGroup();
-
 
 		var redMarker = L.AwesomeMarkers.icon({
 			icon: 'star',
@@ -199,6 +196,14 @@
 		var Nuhop = new L.LatLng(40.634856, -82.333989);
 		var CH = new L.LatLng(40.752119, -73.993909);		
 		var House = new L.LatLng(39.298307, -82.953901);	
+		
+		var TempleUMarker = L.marker(TempleU, {icon: TempleUIcon}).addTo(map);
+		var WVUMarker = L.marker(WVU, {icon: WVUIcon}).addTo(map);
+		var TtMarker = L.marker(Tt, {icon: TtIcon}).addTo(map);
+		var OWUMarker = L.marker(OWU, {icon: OWUIcon}).addTo(map);
+		var NuhopMarker = L.marker(Nuhop, {icon: NuhopIcon}).addTo(map);
+		var CHMarker = L.marker(CH, {icon: CHIcon}).addTo(map);		
+		var HouseMarker = L.marker(House, {icon: HouseIcon}).addTo(map);
 
 		var TempleUList = "<p align = center ><b><a href='http://www.cla.temple.edu/gus/'>Temple University</a><br>"
 			+ "Department Geography and Urban Studies<br>"
@@ -231,17 +236,10 @@
 				+ "<li>Summer and Fall 2011 - Reseach Assistant for Dr. J Conley and Dr. R Stein</li>"
 				+"</b></li>"
 			+ "</ul>"
-				
-		var TempleUMarker = L.marker(TempleU, {icon: TempleUIcon}).bindPopup(TempleUList).addTo(EduWrk);
-		var WVUMarker = L.marker(WVU, {icon: WVUIcon}).bindPopup(WVUList).addTo(EduWrk);
-		var TtMarker = L.marker(Tt, {icon: TtIcon}).addTo(EduWrk);
-		var OWUMarker = L.marker(OWU, {icon: OWUIcon}).addTo(EduWrk);
-		var NuhopMarker = L.marker(Nuhop, {icon: NuhopIcon}).addTo(EduWrk);
-		var CHMarker = L.marker(CH, {icon: CHIcon}).addTo(EduWrk);		
-		var HouseMarker = L.marker(House, {icon: HouseIcon}).addTo(EduWrk);
 		
-		L.control.layers(EduWrk).addTo(map);
-
+		TempleUMarker.bindPopup(TempleUList);
+		WVUMarker.bindPopup(WVUList);
+		
 		</script>
 	</div>
 		
