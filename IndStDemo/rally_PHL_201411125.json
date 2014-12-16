@@ -1,0 +1,13 @@
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [-75.157846, 39.978669]
+  },
+  "properties": {
+    "name": "Broad and Cecil B. Moore",
+    "action": "Rally",
+    "date": "11/25/2014",
+    "contributor": "Clinton"
+  }
+}

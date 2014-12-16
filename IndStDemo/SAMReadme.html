@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Social Action Mapper</title>
+	<meta charset="utf-8" />
+    
+    <h1>Social Action Mapper v0.03</h1>
+    Clinton Davis <br>
+    15 December 2014 <br><br>
+    
+    This project is still in progress, but upon completion, it will consists of three parts:<br><br>
+        - A webviewer with dynamic controls for selecting by attributes<br>
+        - A webeditor for creating and editing existing layers<br>
+        - An Android collection app for producing layers (via geoJson files)<br><br>
+    
+<h2>Current Status</h2>
+Currently, the web interface displays geoJson files a custom leaflet map.  Images and videos are embedded from external sources.  The geoJson files currently are either included directly in the website file or are loaded from a separate geoJson stored locally on the site (this is only available for one layer, all others must be hard coded).  All formatting is hardcoded into the map, but is changeable at the code level. 
+    
+<h2>Near Future updates to the web interface will include:</h2>
+    - better storage and access methods for geoJson files (need to be able to store all files remotely and access individually)<br>
+    - online form-based layer creation and editing<br>
+    - online map-based layer creation and editing<br>
+    - the ability for users in the viewer interface to selectively show and format layers by attributes
+<br><br>    
+<h2>Longer term web updates might include:</h2>
+    - full integration with Android app<br>
+    - user account management<br>
+    - interface level exporting of layers to geoJson and kml <br>
+    - on video location visualization (based on starting location, path, and intermediate time/location values)
+    <br>
+    
+<h2>Android Collection App</h2>
+The Android collector is not yet functional. An initial build is in progress that will simply take in location, attributes, photos, and/or video and save as geoJson files.  I haven't been able to get this app to work yet, but hope to continue work on it.  The design plan will be as displayed below, with the producer able to set attribute fields and the user able to enter values into the text fields.
+
+    <h2>Planned Appearance of Collection App</h2>
+<img src= "./SAMApp.png">
+    
+    
+    
+</body>
+</html>

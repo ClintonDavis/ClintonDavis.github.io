@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Social Action Mapper</title>
+	<meta charset="utf-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/dist/leaflet.awesome-markers.css">
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+      <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <link rel="points" type="application/json" href="./march_PHL_20141125.json">
+    
+
+	
+	<style>
+	        body {
+            padding: 0;
+            margin: 0;
+        }
+        html, body,
+		#map {
+			width: 100%;
+			height: 100%;
+		}
+
+		#floatingButtons  {
+			position: absolute;
+			bottom: 25px;
+			right: 25px;
+			padding-left:0px;
+			padding-right:0px;
+			height: 100%
+			z-index: 100;
+			text-align:right
+		}
+	@media screen and (min-width: 401px) {
+		#TitleTextMobile { 
+			display:none;
+		}
+		#TitleText  {
+			position: absolute;
+			top: 10px;
+			left: 50px;
+			width: 250px;
+			
+			padding-top:10px;
+			padding-left:10px;
+			padding-right:10px;
+			
+			z-index: 98;
+			background-color: rgba(255,255,255,0.9)
+		}
+		
+		}
+		
+	@media screen and (max-width: 400px) {
+		#TitleText { 
+			display:none;
+		}
+		#TitleTextMobile  {
+			position: absolute;
+			top: 10px;
+			left: 50px;
+			width: 200px;
+			
+			padding-top:10px;
+			padding-left:10px;
+			padding-right:10px;
+			
+			z-index: 98;
+			background-color: rgba(255,255,255,0.9)
+		}  
+		  
+		  
+		}
+
+    </style>
+</head>
+<body>
+	<div id="map">
+		<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+		<script src="/dist/leaflet.awesome-markers.js"></script>
+	
+		<script>
+	
+		// create a map in the "map" div, set the view to a given place and zoom
+		var map = L.map('map').setView([39.944489 , -75.209742], 12);
+
+ 		L.tileLayer('http://{s}.tiles.mapbox.com/v3/cdavis.jhddlci9/{z}/{x}/{y}.png', {
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+			maxZoom: 18
+			}).addTo(map);	
+            
+         function cdOnEachFeature(feature, layer){
+                if (feature.properties.name) {
+                    layer.bindPopup('<b>' + feature.properties.name + " " + feature.properties.action + '</b><br>'
+                    + feature.properties.date + '<br>'
+                    +  '<img src = ' + feature.properties.imageURL + ' width=200px height=200px>')
+                }
+         };    
+            
+        var BoadAndCecilBMoore = {
+            "type": "Feature",
+            "properties": {
+                "name": "Broad and Cecil B. Moore",
+                "action": "Rally",
+                "date": "11/25/2014",
+                "contributor": "Clinton",
+                "imageURL": "IMG_20141125_165331.jpg",
+                },
+            
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-75.157846, 39.978669]
+            }          
+            
+        };
+            
+        var rally = L.geoJson(BoadAndCecilBMoore, {
+            onEachFeature: cdOnEachFeature
+        }).addTo(map);
+
+  $.getJSON($('link[rel="points"]').attr("href"), function(data) {
+    var geojson = L.geoJson(data, {
+      onEachFeature: function (feature, layer) {
+        layer.bindPopup(('<b>' + feature.properties.name + " " + feature.properties.action + '</b><br>'
+                    + feature.properties.date + '<br>'
+                    +  '<iframe width="200" height="113" src= ' + feature.properties.videoURL + ' frameborder="0" allowfullscreen></iframe>' + ' <br> Video Source: ' + feature.properties.videoSource));
+      }
+    });
+    geojson.addTo(map);
+    });
+           
+		
+		</script>
+	</div>
+		
+	<div id="TitleText">
+		<img src = "./SAMLogo.png" width = 180px> </img>
+		<h1> Development Version </h1>
+		<h4> clinton.davis@temple.edu </h4> 
+		<h4> December 2014 </h4> 
+		<h4> v0.03 </h4> 
+	</div>
+	
+		<div id="TitleTextMobile">
+		<h1> Social Action Mapper </h1>
+		<h4> Dev. Version </h4> 
+		<h4> clinton.davis@temple.edu </h4> 
+		<h4> v0.03 </h4> 
+	</div>
+	
+	<div id="floatingButtons">
+		<a href="./SAMEditor.html" class="btn btn-warning btn-lg">editor (coming soon)</a>
+		<a href="./SAMReadme.html" class="btn btn-success btn-lg">readme</a>
+		<a href="mailto:clinton.davis@temple.edu" class="btn btn-primary btn-lg">email</a>
+	</div>
+
+</body>
+</html>
