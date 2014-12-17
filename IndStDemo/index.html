@@ -21,7 +21,6 @@
 	
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
       <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-    <link rel="points" type="application/json" href="./march_PHL_20141125.json">
     
 
 	
@@ -105,14 +104,19 @@
 			}).addTo(map);	
             
          function cdOnEachFeature(feature, layer){
-                if (feature.properties.name) {
-                    layer.bindPopup('<b>' + feature.properties.name + " " + feature.properties.action + '</b><br>'
-                    + feature.properties.date + '<br>'
-                    +  '<img src = ' + feature.properties.imageURL + ' width=200px height=200px>')
+                if (feature.properties.name && feature.properties.imageURL && feature.properties.videoURL) {
+                    layer.bindPopup('<b>' + feature.properties.name + " " + feature.properties.action + '</b><br>' + feature.properties.date + '<br>' +  '<img src = ' + feature.properties.imageURL + ' width=200px height=200px> <br>' + '<iframe width="200" height="113" src= ' + feature.properties.videoURL + ' frameborder="0" allowfullscreen></iframe>' + ' <br> Video Source: ' + feature.properties.videoSource);
+                } else if (feature.properties.name && feature.properties.imageURL) {
+                    layer.bindPopup('<b>' + feature.properties.name + " " + feature.properties.action + '</b><br>' + feature.properties.date + '<br>' +  '<img src = ' + feature.properties.imageURL + ' width=200px height=200px>'+ ' <br> Image Source: ' + feature.properties.imageSource);
+                } else if (feature.properties.name && feature.properties.videoURL) {
+                    layer.bindPopup('<b>' + feature.properties.name + " " + feature.properties.action + '</b><br>' + feature.properties.date + '<br>' +  
+'<iframe width="200" height="113" src= ' + feature.properties.videoURL + ' frameborder="0" allowfullscreen></iframe>' + ' <br> Video Source: ' + feature.properties.videoSource);
+                } else if (feature.properties.name) {
+                    layer.bindPopup('<b>' + feature.properties.name + " " + feature.properties.action + '</b><br>' + feature.properties.date);
                 }
          };    
             
-        var BoadAndCecilBMoore = {
+/*        var BoadAndCecilBMoore = {
             "type": "Feature",
             "properties": {
                 "name": "Broad and Cecil B. Moore",
@@ -132,18 +136,24 @@
         var rally = L.geoJson(BoadAndCecilBMoore, {
             onEachFeature: cdOnEachFeature
         }).addTo(map);
-
-  $.getJSON($('link[rel="points"]').attr("href"), function(data) {
-    var geojson = L.geoJson(data, {
-      onEachFeature: function (feature, layer) {
-        layer.bindPopup(('<b>' + feature.properties.name + " " + feature.properties.action + '</b><br>'
-                    + feature.properties.date + '<br>'
-                    +  '<iframe width="200" height="113" src= ' + feature.properties.videoURL + ' frameborder="0" allowfullscreen></iframe>' + ' <br> Video Source: ' + feature.properties.videoSource));
-      }
+*/    
+//rallies
+    $.getJSON("./rally_PHL_201411125.json", function(data) {
+        var rally1 = L.geoJson(data, {
+            onEachFeature: cdOnEachFeature
+        });
+        rally1.addTo(map);
     });
-    geojson.addTo(map);
+            
+            
+ //marches           
+            
+    $.getJSON("./march_PHL_20141125.json", function(data) {
+        var march1 = L.geoJson(data, {
+            onEachFeature: cdOnEachFeature
+        });
+        march1.addTo(map);
     });
-           
 		
 		</script>
 	</div>
@@ -153,14 +163,14 @@
 		<h1> Development Version </h1>
 		<h4> clinton.davis@temple.edu </h4> 
 		<h4> December 2014 </h4> 
-		<h4> v0.03 </h4> 
+		<h4> v0.05 </h4> 
 	</div>
 	
 		<div id="TitleTextMobile">
 		<h1> Social Action Mapper </h1>
 		<h4> Dev. Version </h4> 
 		<h4> clinton.davis@temple.edu </h4> 
-		<h4> v0.03 </h4> 
+		<h4> v0.05 </h4> 
 	</div>
 	
 	<div id="floatingButtons">
