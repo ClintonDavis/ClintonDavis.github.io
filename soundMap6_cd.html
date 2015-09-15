@@ -1,0 +1,106 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta charset='UTF-8'>
+	<title>Play Sound on :hover</title>
+	<link rel='stylesheet' href='css/style.css'>
+
+</head>
+<script type="text/javascript">
+window.onload=function(){
+	// collecting elements
+	//sound 1 location 1
+	var sound1 = document.getElementById("sound1");
+	var location1 = document.getElementById('room1');
+	location1.onmouseover=function(){ //play on mouseover
+		sound1.play();
+		return false;
+	};
+	location1.onmouseout=function(){  // pause on mouseout
+		sound1.pause();
+	};
+
+	//sound 2 location 2
+	var sound2 = document.getElementById("sound2");
+	var location2 = document.getElementById('room2');
+	location2.onmouseover=function(){ //play on mouseover
+		sound2.play();
+		return false;
+	};
+	location2.onmouseout=function(){  // pause on mouseout
+		sound2.pause();
+	};
+	
+	//sound 3 location 3
+	var sound3 = document.getElementById("sound3");
+	var location3 = document.getElementById('room3');
+	location3.onmouseover=function(){ //play on mouseover
+		sound3.play();
+		return false;
+	};
+	location3.onmouseout=function(){  // pause on mouseout
+		sound3.pause();
+	};
+	
+	
+};
+</script> 
+
+
+<body>
+
+<div id="wrap">
+	<header>
+        <h1>
+          cd soundMap v6
+        </h1>
+     </header>
+<section>
+
+	<p>
+	Demonstration Music is Greensky Bluegrass Playing Live at the House of Blues in Cleveland, Ohio on 2015-02-06.
+	<p>
+	</p>
+	Music is available at https://archive.org/details/gsbg2015-02-06.MilabVM-44Link.flac16
+	</p>
+	
+	
+<!-- define all sounds -->
+	<audio id="sound1" loop="loop" preload="auto">
+		<source src="audio/gsbg2015-02-06.MilabVM-44Link.t01.mp3"></source>
+		<source src="audio/gsbg2015-02-06.MilabVM-44Link.t01.ogg"></source>
+		Your Browser does not support please use (Firefox 3.5+, Chrome 3+, Opera 10.5+, Safari 4+, IE 9+) browsers.
+	</audio>
+	
+	<audio id="sound2" loop="loop" preload="auto">
+		<source src="audio/gsbg2015-02-06.MilabVM-44Link.t02.mp3"></source>
+		<source src="audio/gsbg2015-02-06.MilabVM-44Link.t02.ogg"></source>
+		Your Browser does not support please use (Firefox 3.5+, Chrome 3+, Opera 10.5+, Safari 4+, IE 9+) browsers.
+	</audio>
+	
+	<audio id="sound3" loop="loop" preload="auto">
+		<source src="audio/gsbg2015-02-06.MilabVM-44Link.t03.mp3"></source>
+		<source src="audio/gsbg2015-02-06.MilabVM-44Link.t03.ogg"></source>
+		Your Browser does not support please use (Firefox 3.5+, Chrome 3+, Opera 10.5+, Safari 4+, IE 9+) browsers.
+	</audio>
+
+<!-- draw layout with named rooms -->	
+	<svg width="5000" height="5000">
+		<rect id="room1" x="0" y="0" width="100" height="100"
+		stroke="green" stroke-width="4" fill="yellow" />
+		Sorry, your browser does not support inline SVG.
+
+		<rect id="room2" x="150" y="0" width="100" height="100"
+		stroke="green" stroke-width="4" fill="yellow" />
+		Sorry, your browser does not support inline SVG.
+		
+		<rect id="room3" x="300" y="0" width="100" height="100"
+		stroke="green" stroke-width="4" fill="yellow" />
+		Sorry, your browser does not support inline SVG.
+	</svg>
+
+
+</section>
+</div>	
+</body> 
+</html>
