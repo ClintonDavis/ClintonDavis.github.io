@@ -20,7 +20,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-
+	
 	<style>
 	        body {
             padding: 0;
@@ -85,6 +85,20 @@
 
     </style>
 </head>
+<script type="text/javascript">
+window.onload=function(){
+	// collecting elements
+	//sound 1 location 1
+	var sound1 = document.getElementById("sound1");
+	var location1 = document.getElementById('room1');
+	location1.onmouseover=function(){ //play on mouseover
+		sound1.play();
+		return false;
+	};
+	location1.onmouseout=function(){  // pause on mouseout
+		sound1.pause();
+};
+</script> 
 <body>
 
 	<audio id="sound1" loop="loop" preload="auto">
@@ -92,6 +106,7 @@
 		<source src="audio/gsbg2015-02-06.MilabVM-44Link.t01.ogg"></source>
 		Your Browser does not support please use (Firefox 3.5+, Chrome 3+, Opera 10.5+, Safari 4+, IE 9+) browsers.
 	</audio>
+	
 	
 	<div id="map">
 		<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
@@ -104,8 +119,7 @@
 
  		L.tileLayer('http://{s}.tiles.mapbox.com/v3/cdavis.jhddlci9/{z}/{x}/{y}.png', {
 			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-			maxZoom: 20,
-			maxNativeZoom: 18
+			maxZoom: 18
 			}).addTo(map);	
 
 		var redMarker = L.AwesomeMarkers.icon({
@@ -281,15 +295,7 @@
 		TempleUMarker.bindPopup(TempleUList);
 		WVUMarker.bindPopup(WVUList);
 		
-		//Sounds
-		var shape1 = L.circle([39.981067, -75.157868], 50).addTo(map);
-		var sound1 = document.getElementById("sound1");
-		
-		var shape1.id = 'room1';
-		
-
-
-	};
+		TempleU.id = 'room1';
 		
 		</script>
 	</div>
