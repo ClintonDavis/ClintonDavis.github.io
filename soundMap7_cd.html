@@ -1,326 +1,128 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Clinton Davis</title>
-	<meta charset="utf-8" />
-
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="/dist/leaflet.awesome-markers.css">
-	
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-	
-	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-	
-	<style>
-	        body {
-            padding: 0;
-            margin: 0;
-        }
-        html, body,
-		#map {
-			width: 100%;
-			height: 100%;
-		}
-
-		#floatingButtons  {
-			position: absolute;
-			bottom: 25px;
-			right: 25px;
-			padding-left:0px;
-			padding-right:0px;
-			height: 100%
-			z-index: 100;
-			text-align:right
-		}
-	@media screen and (min-width: 401px) {
-		#TitleTextMobile { 
-			display:none;
-		}
-		#TitleText  {
-			position: absolute;
-			top: 10px;
-			left: 50px;
-			width: 200px;
-			
-			padding-top:10px;
-			padding-left:10px;
-			padding-right:10px;
-			
-			z-index: 98;
-			background-color: rgba(255,255,255,0.9)
-		}
-		
-		}
-		
-	@media screen and (max-width: 400px) {
-		#TitleText { 
-			display:none;
-		}
-		#TitleTextMobile  {
-			position: absolute;
-			top: 10px;
-			left: 50px;
-			width: 200px;
-			
-			padding-top:10px;
-			padding-left:10px;
-			padding-right:10px;
-			
-			z-index: 98;
-			background-color: rgba(255,255,255,0.9)
-		}  
-		  
-		  
-		}
-
-    </style>
+<!-- Borrowed from Ben Welsh http://palewi.re/posts/2012/03/26/leaflet-recipe-hover-events-features-and-polygons/ -->
+    <title>Leaflet GeoJSON example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- All the stuff you need to install from Leaflet -->
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.ie.css" /><![endif]-->
+    <script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js"></script>
+    <!-- jQuery so we can easily make our popup -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <!-- My external GeoJSON file with the City Council boundaries in it -->
+    <script src="http://s3-us-west-1.amazonaws.com/palewire/leaflet-hover/citycouncil.geojson"></script>
 </head>
-<script type="text/javascript">
-window.onload=function(){
-	// collecting elements
-	//sound 1 location 1
-	var sound1 = document.getElementById("sound1");
-	var location1 = document.getElementById('room1');
-	location1.onmouseover=function(){ //play on mouseover
-		sound1.play();
-		return false;
-	};
-	location1.onmouseout=function(){  // pause on mouseout
-		sound1.pause();
-};
-</script> 
-<body>
-
+	<p>
+	Demonstration Music is Greensky Bluegrass Playing Live at the House of Blues in Cleveland, Ohio on 2015-02-06.
+	<p>
+	</p>
+	Music is available at https://archive.org/details/gsbg2015-02-06.MilabVM-44Link.flac16
+	</p>
+	
+<body style="margin:0; padding:0;">
+    <!-- The <div> where we're put the map -->
+    <div id="map" style="width: 100%; height: 350px;"></div>
+    <script type="text/javascript">
+		var sound1 = document.getElementById("sound1");       
+	   // Initialize the map object
+        var map = new L.Map('map', {
+            // Some basic options to keep the map still and prevent 
+            // the user from zooming and such.
+            scrollWheelZoom: false,
+            touchZoom: false,
+            doubleClickZoom: false,
+            zoomControl: false,
+            dragging: false
+        });
+        // Prep the background tile layer graciously provided by stamen.com
+        var stamenUrl = 'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png';
+        var stamenAttribution = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.';
+        var stamenLayer = new L.TileLayer(stamenUrl, {maxZoom: 18, attribution: stamenAttribution});
+        // Set the center on our city of angels
+        var center = new L.LatLng(34.0, -118.4);
+        map.setView(center, 9)
+        // Load the background tiles
+        map.addLayer(stamenLayer);
+        // Create an empty layer where we will load the polygons
+        var featureLayer = new L.GeoJSON();
+        // Set a default style for out the polygons will appear
+        var defaultStyle = {
+            color: "#2262CC",
+            weight: 2,
+            opacity: 0.6,
+            fillOpacity: 0.1,
+            fillColor: "#2262CC"
+        };
+        var highlightStyle = {
+            color: '#2262CC', 
+            weight: 3,
+            opacity: 0.6,
+            fillOpacity: 0.65,
+            fillColor: '#2262CC'
+        };
+        // Define what happens to each polygon just before it is loaded on to
+        // the map. This is Leaflet's special way of goofing around with your
+        // data, setting styles and regulating user interactions.
+        var onEachFeature = function(feature, layer) {
+            // Load the default style. 
+            layer.setStyle(defaultStyle);
+            // Create a self-invoking function that passes in the layer
+            // and the properties associated with this particular record.
+            (function(layer, properties) {
+              // Create a mouseover event
+              layer.on("mouseover", function (e) {
+                // Change the style to the highlighted version
+                layer.setStyle(highlightStyle);
+				sound1.play();
+                // Create a popup with a unique ID linked to this record
+                var popup = $("<div></div>", {
+                    id: "popup-" + properties.DISTRICT,
+                    css: {
+                        position: "absolute",
+                        bottom: "85px",
+                        left: "50px",
+                        zIndex: 1002,
+                        backgroundColor: "white",
+                        padding: "8px",
+                        border: "1px solid #ccc"
+                    }
+                });
+                // Insert a headline into that popup
+                var hed = $("<div></div>", {
+                    text: "District " + properties.DISTRICT + ": " + properties.REPRESENTATIVE,
+                    css: {fontSize: "16px", marginBottom: "3px"}
+                }).appendTo(popup);
+                // Add the popup to the map
+                popup.appendTo("#map");
+              });
+              // Create a mouseout event that undoes the mouseover changes
+              layer.on("mouseout", function (e) {
+                // Start by reverting the style back
+                layer.setStyle(defaultStyle); 
+				sound1.pause();
+                // And then destroying the popup
+                $("#popup-" + properties.DISTRICT).remove();
+              });
+              // Close the "anonymous" wrapper function, and call it while passing
+              // in the variables necessary to make the events work the way we want.
+            })(layer, feature.properties);
+        };
+        // Add the GeoJSON to the layer. `boundaries` is defined in the external
+        // GeoJSON file that I've loaded in the <head> of this HTML document.
+        var featureLayer = L.geoJson(boundaries, {
+            // And link up the function to run when loading each feature
+            onEachFeature: onEachFeature
+        });
+        // Finally, add the layer to the map.
+        map.addLayer(featureLayer);
+    </script>
 	<audio id="sound1" loop="loop" preload="auto">
 		<source src="audio/gsbg2015-02-06.MilabVM-44Link.t01.mp3"></source>
 		<source src="audio/gsbg2015-02-06.MilabVM-44Link.t01.ogg"></source>
 		Your Browser does not support please use (Firefox 3.5+, Chrome 3+, Opera 10.5+, Safari 4+, IE 9+) browsers.
 	</audio>
-	
-	
-	<div id="map">
-		<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-		<script src="/dist/leaflet.awesome-markers.js"></script>
-	
-		<script>
-	
-		// create a map in the "map" div, set the view to a given place and zoom
-		var map = L.map('map').setView([39.944489 , -75.209742], 12);
-
- 		L.tileLayer('http://{s}.tiles.mapbox.com/v3/cdavis.jhddlci9/{z}/{x}/{y}.png', {
-			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-			maxZoom: 20
-			}).addTo(map);	
-
-		var redMarker = L.AwesomeMarkers.icon({
-			icon: 'star',
-			prefix: 'fa',
-			markerColor: 'red'
-			});
-
-		var TempleUIcon = L.icon({
-			iconUrl: 'temple_logo_transparent.png',
-			shadowUrl: 'temple_logo_shadow_transparent.png',
-
-			iconSize:     [50, 50], // size of the icon
-			shadowSize:   [100, 12.5], // size of the shadow
-			iconAnchor:   [25, 50], // point of the icon which will correspond to marker's location (top left corner)
-			shadowAnchor: [25, 12.5],  // the same for the shadow
-			popupAnchor:  [0, -50], // point from which the popup should open relative to the iconAnchor
-			
-		});
-		
-		var WVUIcon = L.icon({
-			iconUrl: 'WVU_logo_transparent.png',
-			shadowUrl: 'WVU_logo_shadow_transparent.png',
-
-			iconSize:     [50, 50], // size of the icon
-			shadowSize:   [100, 12.5], // size of the shadow
-			iconAnchor:   [25, 50], // point of the icon which will correspond to marker's location (top left corner)
-			shadowAnchor: [25, 12.5],  // the same for the shadow
-			popupAnchor:  [0, -50], // point from which the popup should open relative to the iconAnchor
-			
-		});
-		
-		var CHIcon = L.icon({
-			iconUrl: 'CH_logo_transparent.png',
-			shadowUrl: 'CH_logo_shadow_transparent.png',
-
-			iconSize:     [50, 50], // size of the icon
-			shadowSize:   [100, 12.5], // size of the shadow
-			iconAnchor:   [25, 50], // point of the icon which will correspond to marker's location (top left corner)
-			shadowAnchor: [25, 12.5],  // the same for the shadow
-			popupAnchor:  [0, -50], // point from which the popup should open relative to the iconAnchor
-			
-		});
-		
-		var NuhopIcon = L.icon({
-			iconUrl: 'Nuhop_logo_transparent.png',
-			shadowUrl: 'Nuhop_logo_shadow_transparent.png',
-
-			iconSize:     [50, 50], // size of the icon
-			shadowSize:   [100, 12.5], // size of the shadow
-			iconAnchor:   [25, 50], // point of the icon which will correspond to marker's location (top left corner)
-			shadowAnchor: [25, 12.5],  // the same for the shadow
-			popupAnchor:  [0, -50], // point from which the popup should open relative to the iconAnchor
-			
-		});
-		var OWUIcon = L.icon({
-			iconUrl: 'OWU_logo_transparent.png',
-			shadowUrl: 'OWU_logo_shadow_transparent.png',
-
-			iconSize:     [50, 50], // size of the icon
-			shadowSize:   [100, 12.5], // size of the shadow
-			iconAnchor:   [25, 50], // point of the icon which will correspond to marker's location (top left corner)
-			shadowAnchor: [25, 12.5],  // the same for the shadow
-			popupAnchor:  [0, -50], // point from which the popup should open relative to the iconAnchor
-			
-		});
-		
-		var TtIcon = L.icon({
-			iconUrl: 'Tt_logo_transparent.png',
-			shadowUrl: 'Tt_logo_shadow_transparent.png',
-
-			iconSize:     [50, 50], // size of the icon
-			shadowSize:   [100, 12.5], // size of the shadow
-			iconAnchor:   [25, 50], // point of the icon which will correspond to marker's location (top left corner)
-			shadowAnchor: [25, 12.5],  // the same for the shadow
-			popupAnchor:  [0, -50], // point from which the popup should open relative to the iconAnchor
-			
-		});			
-		
-		var HouseIcon = L.icon({
-			iconUrl: 'House_logo_transparent.png',
-			shadowUrl: 'House_logo_shadow_transparent.png',
-
-			iconSize:     [50, 50], // size of the icon
-			shadowSize:   [100, 12.5], // size of the shadow
-			iconAnchor:   [25, 50], // point of the icon which will correspond to marker's location (top left corner)
-			shadowAnchor: [25, 12.5],  // the same for the shadow
-			popupAnchor:  [0, -50], // point from which the popup should open relative to the iconAnchor
-			
-		});
-		
-		var TempleU = new L.LatLng(39.981067, -75.157868); 
-		var WVU = new L.LatLng(39.635787, -79.956164);
-		var Tt = new L.LatLng(40.825615, -74.471691);
-		var OWU = new L.LatLng(40.295976, -83.067846); 
-		var Nuhop = new L.LatLng(40.634856, -82.333989);
-		var CH = new L.LatLng(40.752119, -73.993909);		
-		var House = new L.LatLng(39.298307, -82.953901);	
-		
-		var TempleUMarker = L.marker(TempleU, {icon: TempleUIcon}).addTo(map);
-		var WVUMarker = L.marker(WVU, {icon: WVUIcon}).addTo(map);
-		var TtMarker = L.marker(Tt, {icon: TtIcon}).addTo(map);
-		var OWUMarker = L.marker(OWU, {icon: OWUIcon}).addTo(map);
-		var NuhopMarker = L.marker(Nuhop, {icon: NuhopIcon}).addTo(map);
-		var CHMarker = L.marker(CH, {icon: CHIcon}).addTo(map);		
-		var HouseMarker = L.marker(House, {icon: HouseIcon}).addTo(map);
-
-		var TempleUList = "<p align = center ><b><a href='http://www.cla.temple.edu/gus/'>Temple University</a><br>"
-			+ "Department Geography and Urban Studies<br>"
-			+ "2013-Present</b></p>"
-			+ "<b><ul align = left >"
-				+ "<li>PhD Student</li>"
-				+ "<li>University Fellow</li>"
-				+ "<li>Teaching Assistant:</b>"
-					+"<ul>"
-					+ "<li>Fall 2014: Enst 2002 - Physical Geography (Dr. F Chmara-Huff)</li>"
-					+ "<li>Fall 2014: Gus 0821 - Digital Mapping (Dr. D Organ)</li>"
-					+"</ul>"
-				+"</li>"
-			+ "</ul>"
-			
-		var WVUList = "<p align = center ><b><a href='http://geo.wvu.edu'>West Virginia University</a><br>"
-			+ "Department Geography and Geology<br>"
-			+ "2011-2013</b></p>"
-			+ "<b><ul align = left >"
-				+ "<li>MA Student</li>"
-				+ "<li>Teaching Assistant:</b>"
-					+"<ul>"
-					+ "<li>Spring 2013: Geog 209 - Economic Geography (Dr. B. Wilson)</li>"
-					+ "<li>Spring 2013: GA for the Undergraduate Committee</li>"
-					+ "<li>Fall 2012: Geog 150/149 - Digital Earth (J. Conley)</li>"
-					+ "<li>Spring 2012: GA for the Manager of Information Systems (R. Crow)</li>"
-					+ "<li>Fall 2011: Geog 150 - Digital Earth (Dr. J. Conley)</li>"
-					+"</ul><b>"
-				+ "<li>Summer 2012 - GIS Technician - WVGIS Tech Center</li>"
-				+ "<li>Summer 2012 - Graduate Student Mentor - NSF REU</li>"
-				+ "<li>Summer and Fall 2011 - Reseach Assistant for Dr. J Conley and Dr. R Stein</li>"
-				+"</b></li>"
-			+ "</ul>"
-			
-		var OWUList = "<p align = center ><b><a href='http://physastro.owu.edu'>Ohio Wesleyan University</a><br>"
-			+ "Department Physics and Astronomy<br>"
-			+ "<b><ul align = left >"
-				+ "<li>Undergraduate Student</li>"
-				+ "<li>Teaching Assistant:</b>"
-					+"<ul>"
-					+ "<li>Fall 2005: Phys 115 Class and Lab (Dr. R Kaye)</li>"
-					+ "<li>Spring 2006: Phys 116 Class and Lab (Dr. R Kaye)</li>"
-					+ "<li>Fall 2006: Phys 115 Class and Lab (Dr. R Kaye)</li>"
-					+ "<li>Spring 2007: Phys 116 Class and Lab (Dr. R Kaye)</li>"
-					+"</ul>"
-				+"</li>"
-			+ "</ul>"
-			
-		var TtList = "<p align = center ><b><a href='http://www.tteci.com'>Tetra Tech EC, Inc.</a><br>"
-			+ "Assistant Environmental Chemist<br>"
-			+ "December 2007 - May 2008 </b></p>"
-			
-		var NuhopList = "<p align = center ><b><a href='http://www.nuhop.org'>Camp Nuhop</a><br>"
-			+ "Summer Camp Counselor<br>"
-			+ "Summers 2000-01, 2003, 2005-07, 2013 </b></p>"
-			
-		var CHList = "<p align = center ><b><a href='http://www.covenanthouse.org'>Covenant House</a><br>"
-			+"June 2008 - June 2009 <br>"
-			+"Full Time Americorps Volunteer<br>"
-			+"Resident Advisor:  Mother/Child and Minors Units</b></p>"
-			
-			
-		TtMarker.bindPopup(TtList);
-		CHMarker.bindPopup(CHList);
-		NuhopMarker.bindPopup(NuhopList);
-		OWUMarker.bindPopup(OWUList);
-		TempleUMarker.bindPopup(TempleUList);
-		WVUMarker.bindPopup(WVUList);
-		
-		TtMarker.id = 'room1';
-		
-		</script>
-	</div>
-		
-	<div id="TitleText">
-		<img src = "./ClintonPicture_sideBar.png" width = 180px> </img>
-		<h1> Clinton Davis </h1>
-		<h4> PhD Student; TA </h4> 
-		<h4> Geography & Urban Studies </h4> 
-		<h4> Temple University </h4> 
-	</div>
-	
-		<div id="TitleTextMobile">
-		<h1> Clinton Davis </h1>
-		<h4> PhD Student; TA </h4> 
-		<h4> Geography & Urban Studies </h4> 
-		<h4> Temple University </h4> 
-	</div>
-	
-	<div id="floatingButtons">
-		<a href="./cd.html" class="btn btn-warning btn-lg">about</a>
-		<a href="./cedavis_cv_Dec2014.pdf" class="btn btn-success btn-lg">cv.pdf</a>
-		<a href="mailto:clinton.davis@temple.edu" class="btn btn-primary btn-lg">email</a>
-		<a href="https://twitter.com/_C_Davis" class="btn btn-info btn-lg">twitter</a>
-	</div>
-
 </body>
 </html>
+
