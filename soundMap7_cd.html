@@ -21,6 +21,46 @@
 	
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 	
+	<script type="text/javascript">
+	window.onload=function(){
+		// collecting elements
+		//sound 1 location 1
+		var sound1 = document.getElementById("sound1");
+		var location1 = document.getElementById('room1');
+		location1.onmouseover=function(){ //play on mouseover
+			sound1.play();
+			return false;
+		};
+		location1.onmouseout=function(){  // pause on mouseout
+			sound1.pause();
+		};
+
+		//sound 2 location 2
+		var sound2 = document.getElementById("sound2");
+		var location2 = document.getElementById('room2');
+		location2.onmouseover=function(){ //play on mouseover
+			sound2.play();
+			return false;
+		};
+		location2.onmouseout=function(){  // pause on mouseout
+			sound2.pause();
+		};
+		
+		//sound 3 location 3
+		var sound3 = document.getElementById("sound3");
+		var location3 = document.getElementById('room3');
+		location3.onmouseover=function(){ //play on mouseover
+			sound3.play();
+			return false;
+		};
+		location3.onmouseout=function(){  // pause on mouseout
+			sound3.pause();
+		};
+		
+		
+	};
+	</script> 
+	
 	<style>
 	        body {
             padding: 0;
@@ -281,16 +321,10 @@
 		WVUMarker.bindPopup(WVUList);
 		
 		//Sounds
-		var location1 = L.circle([39.981067, -75.157868], .5).addTo(map);
+		var shape1 = L.circle([39.981067, -75.157868], 50).addTo(map);
 		var sound1 = document.getElementById("sound1");
 		
-		location1.onmouseover=function(){ //play on mouseover
-			sound1.play();
-			return false;
-		};
-		location1.onmouseout=function(){  // pause on mouseout
-			sound1.pause();
-		};
+		var shape1.id = 'room1';
 		
 		</script>
 	</div>
