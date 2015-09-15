@@ -20,24 +20,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-	
-	<script type="text/javascript">
-	window.onload=function(){
-		// collecting elements
-		//sound 1 location 1
-		var sound1 = document.getElementById("sound1");
-		var location1 = document.getElementById('room1');
-		location1.onmouseover=function(){ //play on mouseover
-			sound1.play();
-			return false;
-		};
-		location1.onmouseout=function(){  // pause on mouseout
-			sound1.pause();
-		};
 
-	};
-	</script> 
-	
 	<style>
 	        body {
             padding: 0;
@@ -303,6 +286,20 @@
 		var sound1 = document.getElementById("sound1");
 		
 		var shape1.id = 'room1';
+		
+		// collecting elements
+		//sound 1 location 1
+		var sound1 = document.getElementById("sound1");
+		var location1 = document.getElementById('room1');
+		location1.onmouseover=function(){ //play on mouseover
+			sound1.play();
+			return false;
+		};
+		location1.onmouseout=function(){  // pause on mouseout
+			sound1.pause();
+		};
+
+	};
 		
 		</script>
 	</div>
