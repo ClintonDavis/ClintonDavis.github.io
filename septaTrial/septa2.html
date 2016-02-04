@@ -1,0 +1,50 @@
+<!doctype html>
+
+<html>
+    
+    
+<head>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />  <!--[if lte IE 8]>
+     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
+  <![endif]-->
+  <style type="text/css">
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    html, body, #map {
+      height: 100%;
+      width: 100%;
+    }
+
+  </style>
+    
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    
+  <script src="https://raw.github.com/calvinmetcalf/leaflet-ajax/master/dist/leaflet.ajax.min.js"></script>
+    
+</head>
+<body>
+    
+  <div id="map"></div>
+    
+  <script>
+  var mapTiles = L.tileLayer('http://{s}.tiles.mapbox.com/v3/cdavis.jhddlci9/{z}/{x}/{y}.png', {
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+			maxZoom: 18
+			}); //Thanks Lyzi Diamond: http://lyzidiamond.com/posts/external-geojson-and-leaflet-the-other-way/
+
+  function popUp(feature, layer) {
+    layer.bindPopup(feature.properties.name);
+  }
+
+  var geojsonLayer = new L.GeoJSON.AJAX("http://www3.septa.org/hackathon/TransitView/36", {onEachFeature:popUp});
+
+  var map = L.map('map').fitBounds(geojsonLayer.getBounds());
+  mapTiles.addTo(map);
+  geojsonLayer.addTo(map);
+
+  </script>
+</body>
+</html>
