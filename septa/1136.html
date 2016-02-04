@@ -1,0 +1,109 @@
+<!doctype html>
+
+<html>
+    
+    
+<head>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />  <!--[if lte IE 8]>
+     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
+  <![endif]-->
+  <style type="text/css">
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    html, body, #map {
+      height: 100%;
+      width: 100%;
+    }
+
+  </style>
+    
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+        
+</head>
+<body>
+    
+  <div id="map"></div>
+    
+  <script>
+var map = L.map('map').setView([39.944391, -75.209817], 16);
+//map.locate({setView: true, maxZoom: 16});
+
+	L.tileLayer('http://{s}.tiles.mapbox.com/v3/cdavis.jhddlci9/{z}/{x}/{y}.png', {
+	maxZoom: 18
+	}).addTo(map);
+			
+getLocations36();
+getLocations11();
+
+
+var t36Icon = L.icon({
+    iconUrl: '36.png',
+    iconSize: [20, 20],
+    iconAnchor: [10,10],
+    popupAnchor: [-3, -76],
+});
+
+var t36RedIcon = L.icon({
+    iconUrl: '36red.png',
+    iconSize: [20, 20],
+    iconAnchor: [10,10],
+    popupAnchor: [-3, -76],
+});
+
+var t11Icon = L.icon({
+    iconUrl: '11.png',
+    iconSize: [20, 20],
+    iconAnchor: [10,10],
+    popupAnchor: [-3, -76],
+});
+
+var t11RedIcon = L.icon({
+    iconUrl: '11red.png',
+    iconSize: [20, 20],
+    iconAnchor: [10,10],
+    popupAnchor: [-3, -76],
+});
+	
+function getLocations36() {
+  $.getJSON("http://www3.septa.org/hackathon/TransitView/?route=36&callback=?", function(json) {
+
+    $.each(json.bus, function(i, item) {
+		if(item.Direction == "EastBound"){
+		L.marker([item.lat, item.lng], {icon: t36Icon}).addTo(map);
+		console.log("add to map: ", item.Direction, item.lat, item.lng);
+		};
+		
+		if(item.Direction == "WestBound"){
+		L.marker([item.lat, item.lng], {icon: t36RedIcon}).addTo(map);
+		console.log("add to map: ", item.Direction, item.lat, item.lng);
+		};
+    });
+
+  });
+}
+
+function getLocations11() {
+  $.getJSON("http://www3.septa.org/hackathon/TransitView/?route=11&callback=?", function(json) {
+
+    $.each(json.bus, function(i, item) {
+		if(item.Direction == "EastBound"){
+		L.marker([item.lat, item.lng], {icon: t11Icon}).addTo(map);
+		console.log("add to map: ", item.Direction, item.lat, item.lng);
+		};
+		
+		if(item.Direction == "WestBound"){
+		L.marker([item.lat, item.lng], {icon: t11RedIcon}).addTo(map);
+		console.log("add to map: ", item.Direction, item.lat, item.lng);
+		};
+    });
+
+  });
+}
+  </script>
+</body>
+</html>
