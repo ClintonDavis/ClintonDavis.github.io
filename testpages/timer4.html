@@ -97,7 +97,7 @@ h1 {
         <button onclick = "runClock('5')" class="btn btn-success btn">5</button>
         <button onclick = "runClock('10')" class="btn btn-success btn">10</button>
         <button onclick = "runClock('15')" class="btn btn-success btn">15</button>
-        <button onclick = "runClock('20')" class="btn btn-success btn">20</button>
+        <button onclick = "runClock('20')" class="btn btn-success btn">15</button>
         <button onclick = "runClock('30')" class="btn btn-success btn">30</button>
     <br><br>
         <button onclick = "runClock('45')" class="btn btn-success btn">45</button>        
@@ -160,6 +160,7 @@ h1 {
         var currentTime = Date.parse(new Date());
                 
         function runClock(timeInMinutes){
+            var currentTime = Date.parse(new Date());
             var deadline = new Date(currentTime + timeInMinutes*60*1000);
             initializeClock('clockdiv', deadline);
         }
