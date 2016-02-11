@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Clinton Davis</title>
+	<meta charset="utf-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/dist/leaflet.awesome-markers.css">
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	
+	<style>
+	   html, body {
+            padding: 0;
+            margin: 0;
+        }
+        
+		#map {
+            position: fixed;
+			width: 100%;
+			height: 100%;
+            z-index: -10;
+		}    
+        
+		#floatingButtons  {
+			position: fixed;
+			bottom: 25px;
+			right: 20px;
+			padding-left:0px;
+			padding-right:0px;
+			z-index: 100;
+			text-align:right
+		}
+        
+    @media screen and (min-width: 401px) {
+		#TitleText  {
+			position: fixed;
+			top: 20px;
+			left: 20px;
+			width: 200px;
+            
+            overflow:auto;
+
+			
+			padding-top:10px;
+			padding-left:10px;
+			padding-right:10px;
+			
+			z-index: 98;
+			background-color: rgba(255,255,255,0.9)
+		}
+        
+            #MainText  {
+			position: fixed;
+			left: 240px;
+            right: 20px;
+            top: 20px;
+            bottom: 85px;
+
+            overflow:auto;
+
+			padding-top:10px;
+			padding-left:10px;
+			padding-right:10px;
+			
+			z-index: 50;
+			background-color: rgba(255,255,255,0.8)
+		}
+    }
+
+    @media screen and (max-width: 400px) {
+		#TitleText  {
+			position: relative;
+            left: 20px;
+            top: 20px;
+            right: 20px;
+            width: auto;
+            margin-right: 20px;
+
+            text-align:center;
+
+            overflow:auto;
+			
+			padding-top:10px;
+			padding-left:10px;
+			padding-right:10px;
+			
+			z-index: 98;
+			background-color: rgba(255,255,255,0.9)
+		}
+        #MainText  {
+                display:none;
+		}
+    }
+    </style>
+</head>
+<body>
+	<div id="map">
+		<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+		<script src="/dist/leaflet.awesome-markers.js"></script>
+	
+		<script>
+	
+		// create a map in the "map" div, set the view to a given place and zoom
+		var map = L.map('map', { zoomControl:false }).setView([39.944489 , -75.209742], 13);
+
+ 		L.tileLayer('http://{s}.tiles.mapbox.com/v3/cdavis.jhddlci9/{z}/{x}/{y}.png', {
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+			maxZoom: 18
+			}).addTo(map);	
+
+		</script>
+	</div>
+		
+	<div id="TitleText">
+		<img src = "./ClintonPicture_sideBar.png" width = 180px> </img>
+		<h1> Clinton Davis </h1>
+		<h4> PhD Student; TA </h4> 
+		<h4> Geography & Urban Studies </h4> 
+		<h4> Temple University </h4> 
+	</div>
+	        
+<div class="PDF" id=MainText>
+   <object data="cedavis_cv_Feb2016.pdf" type="application/pdf" height="100%" width="100%">
+       alt : <a href="your.pdf">your.pdf</a>
+   </object>
+</div>
+        
+        
+    
+	<div id="floatingButtons">
+<!---		<a href="./cd.html" class="btn btn-warning btn-lg">about</a> --->
+		<a href="./cedavis_cv_Feb2016.pdf" class="btn btn-success btn-lg">cv.pdf</a>
+		<a href="mailto:clinton.davis@temple.edu" class="btn btn-primary btn-lg">email</a>
+		<a href="https://twitter.com/_C_Davis" class="btn btn-info btn-lg">twitter</a>
+	</div>
+
+</body>
+</html>

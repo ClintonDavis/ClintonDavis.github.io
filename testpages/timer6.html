@@ -163,7 +163,7 @@ h1 {
 
                 };
               };
-
+                
               updateClock();
 
               var timeinterval = setInterval(updateClock, 1000);
@@ -175,6 +175,8 @@ h1 {
             var currentTime = Date.parse(new Date());
             var deadline = new Date(currentTime + timeInMinutes*60*1000);
             initializeClock('clockdiv', deadline);
+            clearInterval(timeinterval);
+
         }
         
         function runClockCustom(){
