@@ -1,5 +1,8 @@
 <!DOCTYPE html>
+
 <html>
+<!--Adapted from http://www.sitepoint.com/build-javascript-countdown-timer-no-dependencies/ Thanks! -cd-->
+
 <head>
 	<title>Clinton Davis</title>
 	<meta charset="utf-8" />
@@ -19,8 +22,6 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-	
-
 	
 	<style>
 
@@ -175,8 +176,6 @@ h1 {
             var currentTime = Date.parse(new Date());
             var deadline = new Date(currentTime + timeInMinutes*60*1000);
             initializeClock('clockdiv', deadline);
-            clearInterval(timeinterval);
-
         }
         
         function runClockCustom(){
