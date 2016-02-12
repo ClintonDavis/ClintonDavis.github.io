@@ -68,6 +68,19 @@ h1 {
   padding-top: 5px;
   font-size: 16px;
 }
+        
+input[type=text]{
+    background-color: #BFBDBD;
+    border:solid 1px #BFBDBD;
+    color: #000000;
+    font-size: 16px;
+    height: 36px;
+    padding:10px;
+    width: 65px;
+    box-shadow: 2px 2px 0 #828181 ;
+    text-align: center;
+
+}
 
         
     </style>
@@ -108,8 +121,8 @@ h1 {
         <button onclick = "runClock('90')" class="btn btn-success btn">90</button>
         <button onclick = "runClock('120')" class="btn btn-success btn">120</button>
 
-    <br><br>
-        <input type="text" id="timeInput" />
+    <br><br>    
+        <input type="text" id="timeInput" />            
     <br><br>
         <button onclick = "runClockCustom()" class="btn btn-success btn">Go</button>
 
@@ -118,59 +131,58 @@ h1 {
     
     
     <script>
-            function getTimeRemaining(endtime) {
-              var t = Date.parse(endtime) - Date.parse(new Date());
-              var seconds = Math.floor((t / 1000) % 60);
-              var minutes = Math.floor(t / 1000 / 60 );
-              if (t > 5400000){
-                  var minutes = Math.floor((t / 1000 / 60) % 60);
-                  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-              } 
-              if (t <= 5400000){
-                   $('#hours').remove();
-                  };
-  //            var days = Math.floor(t / (1000 * 60 * 60 * 24));
-              return {
-                'total': t,
+        function getTimeRemaining(endtime) {
+          var t = Date.parse(endtime) - Date.parse(new Date());
+          var seconds = Math.floor((t / 1000) % 60);
+          var minutes = Math.floor(t / 1000 / 60 );
+          if (t > 5400000){
+              var minutes = Math.floor((t / 1000 / 60) % 60);
+              var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+          } 
+          if (t <= 5400000){
+               $('#hours').remove();
+              };
+//            var days = Math.floor(t / (1000 * 60 * 60 * 24));
+          return {
+            'total': t,
 //                'days': days,
-                'hours': hours,
-                'minutes': minutes,
-                'seconds': seconds
+            'hours': hours,
+            'minutes': minutes,
+            'seconds': seconds
+          };
+        }
+
+        function initializeClock(id, endtime) {
+          var clock = document.getElementById(id);
+//          var daysSpan = clock.querySelector('.days');
+          var hoursSpan = clock.querySelector('.hours');
+          var minutesSpan = clock.querySelector('.minutes');
+          var secondsSpan = clock.querySelector('.seconds');
+
+          function updateClock() {
+            var t = getTimeRemaining(endtime);
+
+  //          daysSpan.innerHTML = t.days;
+            if (t.total > 5400000){
+                hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
               };
-            }
-        
-            function initializeClock(id, endtime) {
-              var clock = document.getElementById(id);
-    //          var daysSpan = clock.querySelector('.days');
-              var hoursSpan = clock.querySelector('.hours');
-              var minutesSpan = clock.querySelector('.minutes');
-              var secondsSpan = clock.querySelector('.seconds');
+            minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+            secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
 
-              function updateClock() {
-                var t = getTimeRemaining(endtime);
+            if (t.total <= 60000) {
+              document.body.style.backgroundColor = "#f9d62e";
+            };  
 
-      //          daysSpan.innerHTML = t.days;
-                if (t.total > 5400000){
-                    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-                  };
-                minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-                secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-                
-                if (t.total <= 60000) {
-                  document.body.style.backgroundColor = "#f9d62e";
-                };  
-                  
-                if (t.total <= 0) {
-                  clearInterval(timeinterval);
-                  document.body.style.backgroundColor = "#ff4e50";
-
-                };
-              };
-
-              updateClock();
-
-              var timeinterval = setInterval(updateClock, 1000);
+            if (t.total <= 0) {
+              clearInterval(timeinterval);
+              document.body.style.backgroundColor = "#ff4e50";
             };
+          };
+
+          updateClock();
+
+          var timeinterval = setInterval(updateClock, 1000);
+        };
 
        // var timeInMinutes = 10;
                         
