@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	.fadein {
+	  position: relative;
+	  width: 500px;
+	  height: 332px;
+	}
+
+	.fadein img {
+	  position: absolute;
+	  left: 0;
+	  top: 0;
+	}
+    </style>
+</head>
+<body>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<div class="fadein">
+  <img src="http://farm3.static.flickr.com/2610/4148988872_990b6da667.jpg">
+  <img src="http://farm3.static.flickr.com/2597/4121218611_040cd7b3f2.jpg">
+  <img src="http://farm3.static.flickr.com/2531/4121218751_ac8bf49d5d.jpg">
+</div>
+<div class="nextButton">NEXT</div>
+<br />
+<div class="previousButton">PREV</div>
+
+<script>
+	$(function() {
+	  $('.fadein img:gt(0)').hide();
+	  $('.nextButton').on('click', function() {
+		$('.fadein :first-child').fadeOut()
+		  .next('img').fadeIn()
+		  .end().appendTo('.fadein');
+	  });
+	  $('.previousButton').on('click', function() {
+		$('.fadein :last-child').fadeIn()
+		  .insertBefore($('.fadein :first-child').fadeOut());
+	  });
+	});
+</script>
+	
+</body>
+</html>

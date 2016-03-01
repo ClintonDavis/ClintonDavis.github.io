@@ -82,20 +82,34 @@
 		
 		trolleys = [];
 			
-		var blankGreenIcon = L.icon({
+var blankGreenIcon = L.icon({
 			iconUrl: 'blankGreen.png',
 			iconSize: [30, 30],
-			iconAnchor: [15,15],
+			iconAnchor: [20,15],
 			popupAnchor: [0, -10],
 		});
 
 		var blankRedIcon = L.icon({
 			iconUrl: 'blankRed.png',
 			iconSize: [30, 30],
-			iconAnchor: [15,15],
+			iconAnchor: [10,15],
 			popupAnchor: [0, -10],
 		});
-	
+
+		var blankBlueIcon = L.icon({
+			iconUrl: 'blankBlue.png',
+			iconSize: [30, 30],
+			iconAnchor: [15,10],
+			popupAnchor: [0, -10],
+		});
+
+		var blankYellowIcon = L.icon({
+			iconUrl: 'blankYellow.png',
+			iconSize: [30, 30],
+			iconAnchor: [15,20],
+			popupAnchor: [0, -10],
+		});
+        
 		function getLocations(id) {
 			var septaBaseURL = "http://www3.septa.org/hackathon/TransitView/?route=36&callback=?";
 			
@@ -116,6 +130,26 @@
 								
 				if(item.Direction == "WestBound"){
 				L.marker([item.lat, item.lng], {icon: blankRedIcon}).addTo(map).bindPopup(
+				"<dl><dt>Trolley: " + id + "</dt>" +
+				"<dt>Direction: " + item.Direction + "</dt>" +
+				"<dt>" + item.Offset + " Minutes ago</dt>"
+				);
+				
+				console.log("add to map: ", id ,item.Direction, item.lat, item.lng);
+				};
+
+				if(item.Direction == "NorthBound"){
+				L.marker([item.lat, item.lng], {icon: blankBlueIcon}).addTo(map).bindPopup(
+				"<dl><dt>Trolley: " + id + "</dt>" +
+				"<dt>Direction: " + item.Direction + "</dt>" +
+				"<dt>" + item.Offset + " Minutes ago</dt>"
+				);
+				
+				console.log("add to map: ", id ,item.Direction, item.lat, item.lng);
+				};
+				
+				if(item.Direction == "SouthBound"){
+				L.marker([item.lat, item.lng], {icon: blankYellowIcon}).addTo(map).bindPopup(
 				"<dl><dt>Trolley: " + id + "</dt>" +
 				"<dt>Direction: " + item.Direction + "</dt>" +
 				"<dt>" + item.Offset + " Minutes ago</dt>"
