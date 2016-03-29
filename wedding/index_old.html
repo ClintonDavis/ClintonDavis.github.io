@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jesi and Clint</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">   
+	<meta charset="utf-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/dist/leaflet.awesome-markers.css">
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+	
+	<style>
+	   html, body {
+            padding: 0;
+            margin: 0;
+            background-color: beige;
+
+        }
+        
+        .arrow {
+          width: 0; 
+            height: 0; 
+            margin-top: 45%;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            vertical-align: middle;
+
+          position: absolute;
+        }
+
+        .arrow-right {
+            border-left: 15px solid #000;
+            margin-right: 5px;
+          right: 0;
+        }
+
+        .arrow-left {
+            border-right: 15px solid #000; 
+            margin-left: 5px;
+          left: 0;
+        }
+
+        .container {
+          margin: 5% auto;
+          font-size: 24px;
+          position: fixed;
+          width: 100%;
+            height: 100%;
+        }
+
+        ul {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background-color: #726260;
+            overflow-y: auto;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: beige;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #EFC9DA;
+        }
+            
+        #TitleText  {
+            position: relative;
+
+            background-color: #CEE3E3;
+            right: 0px;
+            left: 0px;
+			height: auto;
+            outline-color: black;
+            text-align: center;
+                
+            margin: 25px;
+
+            overflow:auto;
+
+			padding:10px;
+
+        }
+        
+        #MainText  {
+            position: absolute;
+
+            margin: 25px;
+            top: 175px;
+            bottom: 0px;
+            
+            overflow:auto;
+
+
+            background-color: slategrey;
+            color: darksalmon;
+            font-size: 14pt;
+            		
+			padding-top:10px;
+			padding-left:10px;
+			padding-right:10px;
+            
+		}
+        
+        .active {
+            font-weight: bold
+        }
+
+    </style>
+</head>
+    
+<header>
+    <nav>
+    
+    <ul>
+      <li><a class="active" href="./index.html">Home</a></li>
+      <li><a href="./Directions.html">Directions</a></li>
+      <li><a href="./Lodging.html">Lodging</a></li>
+      <li><a href="./Gifts.html">Gifts</a></li>
+      <li><a href="./RSVP.html">RSVP</a></li>
+    </ul>
+    </nav>
+</header>
+    
+<body>
+
+
+    <div class="container">
+      <!-- <a class="arrow arrow-left" href="./index.html" role="button"></a> -->
+
+      <a class="arrow arrow-right" href="./directions.html" role="button"></a>
+    </div>
+    
+	<div id="TitleText">
+        <h2>Jesi and Clint's Wedding</h2>
+        <h3>9/3/2016
+        </h3>
+	</div>
+    
+    
+    <div id="MainText">
+        On Saturday, September 3rd, 2016, Jesi and Clint are getting married at Camp Nuhop near Mansfield, Ohio.
+        <br><br>
+        The Ceremony, reception, and wedding party will all take place at the camp and there is free lodging available in the cabins for any guests who want to stay at camp that night. 
+        <br><br>
+        There is also a State Park Resort Hotel a short walk or drive from the camp if you would prefer to stay there.
+        <br><br>
+            
+        
+        <br><br><br><br><br><br>
+        <br><br><br><br><br><br>
+        More text
+    </div>
+</body>
+</html>

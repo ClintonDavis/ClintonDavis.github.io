@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jesi and Clint</title>
+    
+    <!--- creating using mobile first css menu bar lesson from Adam Bray http://www.adam-bray.com/blog/115/how-to-create-mobile-friendly-html-5-css-3-fixed-responsive-navigation-menu/--->
+    
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">   
+	<meta charset="utf-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/dist/leaflet.awesome-markers.css">
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    
+    <link href="wedding.css" rel="stylesheet" type="text/css">
+
+    <script>
+        $(document).ready(function() {
+            $("#navToggle a").click(function(e){
+                e.preventDefault();
+                
+                $("header > nav").slideToggle();
+                $("#logo").toggleClass("menuUp menuDown");
+            });
+            
+            $(window).resize(function() {
+                if($( window ).width() >= "800") {
+                    $("header > nav").css("display", "block");
+        
+                    if($("#logo").attr('class') == "menuDown") {
+                        $("#logo").toggleClass("menuUp menuDown");
+                    }
+                }
+                else {
+                    $("header > nav").css("display", "none");
+                }
+            });
+            
+            $("header > nav > ul > li > a").click(function(e) {
+                if($( window ).width() <= "800") {
+                    if($(this).siblings().size() > 0 ) {
+		                e.preventDefault();
+                        $(this).siblings().slideToggle("fast")
+                        $(this).children(".toggle").html($(this).children(".toggle").html() == 'close' ? 'expand' : 'close');
+                    }
+                }
+            });
+            
+        });
+        
+    
+    </script>
+
+    
+    
+</head>
+    
+<header>
+    
+    <div id="logo" class="menuUp">
+        <h1>Jesi & Clint <br> 9/3/16</h1>
+        <div id="navToggle">
+            <a href="#" style="font-size: 50px">≡</a>
+        </div>
+    </div>
+    
+    <nav>
+		<ul>
+            <li><a href="./index.html">Home</a></li>       
+                <li>
+                <a href="./map.html">Maps <span class="toggle">Expand</span><span class="caret"></span></a>
+                <nav>
+                    <ul>
+                        <li><a href="./map.html">Wedding Location</a></li>
+                        <li><a href="./fromColumbus.html">From Columbus </a></li>
+                        <li><a href="./fromCleveland.html">From Cleveland </a></li>
+                    </ul>
+                </nav>
+            </li>
+            
+            <li><a href="./lodging.html">Lodging</a></li>
+            <li><a href="./gifts.html">Gifts</a></li>
+            <li><a href="./rsvp.html">RSVP</a></li>
+        </ul>
+	</nav>
+
+
+</header>
+    
+<body>
+
+    <div id="MainText">
+        So, there are a few options for lodging:
+        <ul>
+            <li> &nbsp;&nbsp;&nbsp; • Stay in a Cabin - with your friends - at Camp - for Free
+            <li> &nbsp;&nbsp;&nbsp; • Sleep in the Woods - at Camp - for Free
+            <li> &nbsp;&nbsp;&nbsp; • Get a Room at the <a href="http://www.mohicanstateparklodge.com/">
+                Mohican Lodge Hotel (short walk or drive, expensive) </a>
+            <li> &nbsp;&nbsp;&nbsp; • Get a Room at the <a href="http://book.bestwestern.com/bestwestern/US/OH/Mansfield-hotels/BEST-WESTERN-Richland-Inn-Mansfield/Hotel-Overview.do?propertyCode=36150&cm_mmc=BL-_-Google-_-GMB-_-36150"> Best Western (20 min. drive, less expensive) </a>
+        </ul>
+        <p>
+        We totally recommend staying at camp if you can.  We have the whole camp for the weekend, so there is no sense in paying for a hotel room.  And, you'll be staying right where the party is.* 
+        <br><br>
+        If you really don't want to stay in one of the (fairly rustic) camp cabins, there are a couple of hotel options.  The Mohican Lodge is really nice (and super expensive) and is just over the hill and through the woods from camp so you can walk there.  It's also a short drive if you don't want to walk.
+        <br><br>
+        Another option is to stay at the Best Western out by the highway.  It's a twenty minute or so drive, so it's less convenient, but it's a nice hotel and is much less expensive than the Lodge.
+        <br><br>
+        You're also welcome to stay anywhere you can find.  We haven't reserved a block of rooms at any hotel since we have the camp available, but there are additional options in the area.
+        <br><br>
+        <i>*There are a small number of rooms in the camp lodge that we are reserving for folks with babies and small children. Let us know if this applies to you and you need one.</i>
+        </p>
+    </div>
+    </body>
+    
+    <footer>    
+    <!--- photo by Miguel Vieira https://commons.wikimedia.org/wiki/File:Appalachian_Cove_forest_on_Baxter_Creek_Trail_in_Great_Smoky_Mountains_National_Park.jpg --->
+    
+        <div id="image_attribution">
+        <a href = "https://commons.wikimedia.org/wiki/File:Appalachian_Cove_forest_on_Baxter_Creek_Trail_in_Great_Smoky_Mountains_National_Park.jpg"> Background by Miguel Vieira CC-BY-SA-3.0 </a>
+    </div>
+    </footer>
+
+</html>
